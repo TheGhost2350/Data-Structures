@@ -1,0 +1,118 @@
+#include <iostream>
+using namespace std;
+
+class Node {
+public:
+    int key;
+    Node* left;
+    Node* right;
+    int height;
+
+    Node(int value) : key(value), left(nullptr), right(nullptr), height(1) {}
+};
+
+class AVLTree {
+private:
+    Node* root;
+
+    int height(Node* node);
+    int balanceFactor(Node* node);
+    Node* rightRotate(Node* y);
+    Node* leftRotate(Node* x);
+    Node* insert(Node* node, int key);
+    Node* minValueNode(Node* node);
+    Node* deleteNode(Node* root, int key);
+    void display(Node* node, int level);
+
+public:
+    AVLTree() : root(nullptr) {}
+
+    void insert(int key);
+    void remove(int key);
+
+    void display() {
+        display(root, 0);
+    }
+
+    // Search function
+    Node* search(int key) {
+        Node* current = root;
+
+        while (current != nullptr) {
+            if (key == current->key) {
+                return current;
+            } else if (key < current->key) {
+                current = current->left;
+            } else {
+                current = current->right;
+            }
+        }
+
+        return nullptr; // Key not found
+    }
+};
+
+int AVLTree::height(Node* node) {
+    return (node ? node->height : 0);
+}
+
+int AVLTree::balanceFactor(Node* node) {
+    return (node ? height(node->left) - height(node->right) : 0);
+}
+
+Node* AVLTree::rightRotate(Node* y) {
+    // Implementation
+}
+
+Node* AVLTree::leftRotate(Node* x) {
+    // Implementation
+}
+
+Node* AVLTree::insert(Node* node, int key) {
+    // Implementation
+}
+
+Node* AVLTree::minValueNode(Node* node) {
+    // Implementation
+}
+
+Node* AVLTree::deleteNode(Node* root, int key) {
+    // Implementation
+}
+
+void AVLTree::insert(int key) {
+    // Implementation
+}
+
+void AVLTree::remove(int key) {
+    // Implementation
+}
+
+void AVLTree::display(Node* node, int level) {
+    // Implementation
+}
+
+int main() {
+    AVLTree avlTree;
+    avlTree.insert(5);
+    avlTree.insert(7);
+    avlTree.insert(1);
+    avlTree.insert(2);
+    
+    // Search example
+    int searchKey = 7;
+    Node* foundNode = avlTree.search(searchKey);
+    if (foundNode) {
+        cout << "Node with key " << searchKey << " found in the tree." << endl;
+    } else {
+        cout << "Node with key " << searchKey << " not found in the tree." << endl;
+    }
+
+    cout << endl << "Before Deleting Any Node : " << endl;
+    avlTree.display();
+    cout << endl << "After Deleting Node having Value '7' : " << endl;
+    avlTree.remove(7);
+    avlTree.display();
+
+    return 0;
+}
